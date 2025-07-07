@@ -1,5 +1,6 @@
 [Unit]
 Description=Outline container for Outline Application
+Requires=outline-postgresql.service outline-valkey.service
 
 [Container]
 ContainerName=outline

@@ -8,7 +8,7 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
     git clone https://github.com/bmairlot/outline-podman.git
 ```
 - Copy the files into the correct containers/systemd directory.
-  - As a root user : 
+  - As a root user (not recommended): 
   ```bash
     mkdir -p /etc/containers/systemd/env
     cp -r *.{container,volume,pod,network} /etc/containers/systemd  
