@@ -15,14 +15,16 @@ NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW
 - Copy the files into the correct containers/systemd directory.
   - As a root user : 
   ```bash
-    mkdir -p /etc/containers/systemd
-    cp -r env *.{container,volume,pod,network} /etc/containers/systemd
+    mkdir -p /etc/containers/systemd/env
+    cp -r *.{container,volume,pod,network} /etc/containers/systemd  
+    cp env/outline.env.example /etc/containers/systemd/env
     systemctl daemon-reload
    ```
   - As a normal user :
   ```bash
     mkdir -p ~/.config/containers/systemd
     cp -r env *.{container,volume,pod,network} ~/.config/containers/systemd
+    cp env/outline.env.example ~/.config/containers/systemd/env
     systemctl --user daemon-reload
    ```
 
