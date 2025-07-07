@@ -24,6 +24,7 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
     cp env/outline.env.example ~/.config/containers/systemd/env/outline.env
   NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW_PASSWORD/" ~/.config/containers/systemd/env/outline.env
   NEW_DOMAIN="outline.mycompany.com" && sed -i "s/DOMAINS: 'outline\.[^']*' -> /DOMAINS: '$NEW_DOMAIN -> /" ~/.config/containers/systemd/env/outline.env
+  sudo loginctl enable-linger outline
   systemctl --user daemon-reload    
    ```
 - Then start the pod
@@ -33,4 +34,5 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
 
 # Notes
 
-The network definition is completely arbitrary. You may choose the subnets that you wish.
+- The network definition is completely arbitrary. You may choose the subnets that you wish.
+- In order to keep the user's service running after deconnexion, the command sudo loginctl enable-linger outline is required.
