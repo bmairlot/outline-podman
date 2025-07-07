@@ -5,7 +5,7 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
 
 - Clone the repository in a local directory (as root or preferably as a local user) :
 ```bash
-    git clone git@github.com:bmairlot/outline-podman.git
+    git clone https://github.com/bmairlot/outline-podman.git
 ```
 - Copy the files into the correct containers/systemd directory.
   - As a root user : 
