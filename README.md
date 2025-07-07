@@ -13,14 +13,14 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
   ```bash
     mkdir -p /etc/containers/systemd/env
     cp -r *.{container,volume,pod,network} /etc/containers/systemd  
-    cp env/outline.env.example /etc/containers/systemd/env
+    cp env/outline.env.example /etc/containers/systemd/env/outline.env
     systemctl daemon-reload
    ```
   - As a normal user :
   ```bash
     mkdir -p ~/.config/containers/systemd
     cp -r env *.{container,volume,pod,network} ~/.config/containers/systemd
-    cp env/outline.env.example ~/.config/containers/systemd/env
+    cp env/outline.env.example ~/.config/containers/systemd/env/outline.env
     systemctl --user daemon-reload
    ```
 - Change the password of the database in env/outline.env (POSTGRES_PASSWORD)
