@@ -1,0 +1,19 @@
+[Unit]
+Description=Postgresql container for Outline Application
+
+[Container]
+ContainerName=outline-postgres
+Image=docker.io/postgres:17-alpine
+EnvironmentFile=env/outline.env
+Volume=outline-postgres-data:/var/lib/postgresql/data
+HealthCmd=pg_isready -q -t 2 -d $POSTGRES_DB -U $POSTGRES_USER
+HealthStartPeriod=20s
+HealthTimeout=30s
+HealthStartupInterval=10s
+HealthStartupRetries=5
+Notify=healthy
+DNS=172.16.0.1
+Pod=outline.pod
+
+[Install]
+WantedBy=multi-user.target

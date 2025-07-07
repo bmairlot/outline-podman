@@ -1,0 +1,5 @@
+[Unit]
+Description=Outline Postgres Data
+
+[Volume]
+VolumeName=outline-postgres-data

@@ -1,0 +1,19 @@
+[Unit]
+Description=HTTPS portal for Outline Application
+
+[Container]
+ContainerName=outline-https-portal
+Image=docker.io/steveltn/https-portal
+EnvironmentFile=env/outline.env
+Volume=outline-https-portal-data:/var/lib/https-portal
+HealthCmd=service nginx status
+HealthStartPeriod=20s
+HealthTimeout=30s
+HealthStartupInterval=10s
+HealthStartupRetries=5
+Notify=healthy
+DNS=172.16.0.1
+Pod=outline.pod
+
+[Install]
+WantedBy=multi-user.target
