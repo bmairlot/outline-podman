@@ -5,8 +5,7 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
 
 - Clone the repository in a local directory (as root or preferably as a local user) :
 ```bash
-    git clone https://github.com/bmairlot/outline-podman.git
-    cd outline-podman
+    git clone https://github.com/bmairlot/outline-podman.git && cd outline-podman    
 ```
 - Copy the files into the correct containers/systemd directory.
   - As a root user (not recommended): 
@@ -14,14 +13,12 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
     mkdir -p /etc/containers/systemd/env
     cp -r *.{container,volume,pod,network} /etc/containers/systemd  
     cp env/outline.env.example /etc/containers/systemd/env/outline.env
-    systemctl daemon-reload
    ```
-  - As a normal user :
+  - Or preferably as a normal user :
   ```bash
     mkdir -p ~/.config/containers/systemd
     cp -r env *.{container,volume,pod,network} ~/.config/containers/systemd
-    cp env/outline.env.example ~/.config/containers/systemd/env/outline.env
-    systemctl --user daemon-reload
+    cp env/outline.env.example ~/.config/containers/systemd/env/outline.env    
    ```
 - Change the password of the database in env/outline.env (POSTGRES_PASSWORD)
 ```bash
@@ -31,7 +28,11 @@ NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW
 ```bash
  NEW_DOMAIN="outline.mycompany.com" && sed -i "s/DOMAINS: 'outline\.[^']*' -> /DOMAINS: '$NEW_DOMAIN -> /" env/outline.env
 ```
-
+- Ask the system to reload the new Pod and the configuration : 
+```bash
+    systemctl --user daemon-reload
+```
+(Remove the --user if you're running as root)
 
 # Notes
 
