@@ -13,26 +13,23 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
     mkdir -p /etc/containers/systemd/env
     cp -r *.{container,volume,pod,network} /etc/containers/systemd  
     cp env/outline.env.example /etc/containers/systemd/env/outline.env
+  NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW_PASSWORD/" /etc/systemd/containers/env/outline.env
+  NEW_DOMAIN="outline.mycompany.com" && sed -i "s/DOMAINS: 'outline\.[^']*' -> /DOMAINS: '$NEW_DOMAIN -> /" /etc/systemd/containers/env/outline.env
+  systemctl daemon-reload
    ```
   - Or preferably as a normal user :
   ```bash
     mkdir -p ~/.config/containers/systemd
     cp -r env *.{container,volume,pod,network} ~/.config/containers/systemd
-    cp env/outline.env.example ~/.config/containers/systemd/env/outline.env    
+    cp env/outline.env.example ~/.config/containers/systemd/env/outline.env
+  NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW_PASSWORD/" ~/.config/containers/env/outline.env
+  NEW_DOMAIN="outline.mycompany.com" && sed -i "s/DOMAINS: 'outline\.[^']*' -> /DOMAINS: '$NEW_DOMAIN -> /" ~/.config/env/outline.env
+  systemctl --user daemon-reload    
    ```
-- Change the password of the database in env/outline.env (POSTGRES_PASSWORD)
+- Then start the pod
 ```bash
-NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW_PASSWORD/" env/outline.env
+    systemc --user start outline-pod
 ```
-- Change the domain to host to your domain in env/outline.en (DOMAINS)
-```bash
- NEW_DOMAIN="outline.mycompany.com" && sed -i "s/DOMAINS: 'outline\.[^']*' -> /DOMAINS: '$NEW_DOMAIN -> /" env/outline.env
-```
-- Ask the system to reload the new Pod and the configuration : 
-```bash
-    systemctl --user daemon-reload
-```
-(Remove the --user if you're running as root)
 
 # Notes
 
