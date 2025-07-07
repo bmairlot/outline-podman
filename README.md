@@ -22,8 +22,8 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
     mkdir -p ~/.config/containers/systemd
     cp -r env *.{container,volume,pod,network} ~/.config/containers/systemd
     cp env/outline.env.example ~/.config/containers/systemd/env/outline.env
-  NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW_PASSWORD/" ~/.config/containers/env/outline.env
-  NEW_DOMAIN="outline.mycompany.com" && sed -i "s/DOMAINS: 'outline\.[^']*' -> /DOMAINS: '$NEW_DOMAIN -> /" ~/.config/env/outline.env
+  NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW_PASSWORD/" ~/.config/containers/systemd/env/outline.env
+  NEW_DOMAIN="outline.mycompany.com" && sed -i "s/DOMAINS: 'outline\.[^']*' -> /DOMAINS: '$NEW_DOMAIN -> /" ~/.config/containers/sytemd/env/outline.env
   systemctl --user daemon-reload    
    ```
 - Then start the pod
