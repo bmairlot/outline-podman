@@ -5,7 +5,27 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
 
 Clone the repository in a local directory (as root or preferably as a local user) then :
 - Change the password of the database in env/outline.env (POSTGRES_PASSWORD)
+```bash
+NEW_PASSWORD=$(uuidgen) && sed -i "s/POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$NEW_PASSWORD/" outline.env
+```
 - Change the domain to host to your domain in env/outline.en (DOMAINS)
+```bash
+ NEW_DOMAIN="outline.mycompany.com" && sed -i "s/DOMAINS: 'outline\.[^']*' -> /DOMAINS: '$NEW_DOMAIN -> /" env/outline.env
+```
+- Copy the files into the correct containers/systemd directory.
+  - As a root user : 
+  ```bash
+    mkdir -p /etc/containers/systemd
+    cp -r env *.{container,volume,pod,network} /etc/containers/systemd
+    systemctl daemon-reload
+   ```
+  - As a normal user :
+  ```bash
+    mkdir -p ~/.config/containers/systemd
+    cp -r env *.{container,volume,pod,network} ~/.config/containers/systemd
+    systemctl --user daemon-reload
+   ```
+
 
 # Notes
 
