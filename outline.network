@@ -8,7 +8,7 @@ DisableDNS=false
 Internal=false
 Subnet=172.17.189.0/24
 Gateway=172.17.189.1
-IPRange=172.17.189.0/28
+IPRange=172.17.189.128/25
 DNS=172.17.189.1
 
 [Service]
