@@ -5,8 +5,7 @@ After=outline-network.service
 
 [Pod]
 PodName=outline
-PublishPort=0.0.0.0:80:80
-PublishPort=0.0.0.0:443:443
+PublishPort=0.0.0.0:3000:3000
 Network=outline
 DNS=172.17.189.1
 IP=172.17.189.200
