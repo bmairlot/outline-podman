@@ -9,6 +9,11 @@ EnvironmentFile=env/.env
 Volume=outline-data:/var/lib/outline/data
 DNS=172.16.0.1
 Pod=outline.pod
-
+HealthCmd=/usr/bin/wget -q http://localhost:3000/ -O - > /dev/null
+HealthStartPeriod=20s
+HealthTimeout=30s
+HealthStartupInterval=30s
+HealthStartupRetries=5
+Notify=healthy
 [Install]
 WantedBy=multi-user.target
