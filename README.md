@@ -9,8 +9,8 @@ Set of scripts and unit files to run Outline in podman pod instead of Docker
 ```
 - Copy the files into the correct containers/systemd directory as a normal user :
 ```bash
-mkdir -p ~/.config/containers/systemd
-cp -r env *.{container,volume,pod,network} ~/.config/containers/systemd
+mkdir -p ~/.config/containers/systemd/env
+cp -r *.{container,volume,pod,network} ~/.config/containers/systemd
 cp env/.env.sample ~/.config/containers/systemd/env/.env
 cp env/postgresql.env.sample ~/.config/containers/systemd/env/postgresql.env
  ```
