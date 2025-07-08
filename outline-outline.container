@@ -4,7 +4,7 @@ Requires=outline-postgresql.service outline-valkey.service
 
 [Container]
 ContainerName=outline
-Image=docker.getoutline.com/outlinewiki/outline:latest
+Image=docker.io/outlinewiki/outline:latest
 EnvironmentFile=env/outline.env
 Volume=outline-data:/var/lib/outline/data
 DNS=172.16.0.1
